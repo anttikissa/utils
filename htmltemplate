@@ -1,0 +1,102 @@
+#!/bin/sh
+#
+# htmltemplate - generate boilerplate for the following files, in current
+# directory:
+#
+# index.html
+# style.less
+# script.js
+#
+# and fetch the following files from their original sources using wget:
+#
+# reset.css
+# jquery-1.4.2.min.js 
+#
+# Files are not overwritten if they exist.
+#
+
+INDEX=index.html
+STYLE=style.less
+SCRIPT=script.js
+RESET=reset.css
+JQUERY=jquery-1.4.2.min.js
+
+if [ -e $INDEX ]
+then 
+    echo $INDEX exists, not overwriting.
+else
+    cat > $INDEX << EOF
+<!doctype html>
+<meta charset="utf-8">
+<html>
+<head>
+<title>I am a title.</title>
+<link rel="stylesheet" href="style.css">
+<script src="jquery-1.4.2.min.js"></script>
+<script src="script.js"></script>
+</head>
+<body>
+<h1>I am a heading.</h1>
+<p><a href="http://en.wikipedia.org/wiki/Shunryu_Suzuki">Shunryu Suzuki</a> said:</p>
+<blockquote>
+When you do something, you should burn yourself completely, like a good bonfire,
+leaving no trace of yourself. 
+</blockquote>
+<p>Now go create.</p>
+</body>
+</html>
+EOF
+    echo Wrote $INDEX
+fi
+
+if [ -e $STYLE ]
+then 
+    echo $STYLE exists, not overwriting.
+else
+    cat > $STYLE << EOF
+@import "reset.css";
+body {
+    font-family: Georgia;
+    margin: 1em;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+p {
+    margin: 1em 0;
+}
+
+EOF
+    echo Wrote $STYLE
+fi
+
+if [ -e $SCRIPT ]
+then 
+    echo $SCRIPT exists, not overwriting.
+else
+    cat > $SCRIPT << EOF
+\$(function() {
+    alert("Hello world");
+});
+EOF
+    echo Wrote $SCRIPT
+fi
+
+if [ -e $RESET ]
+then 
+    echo $RESET exists, not overwriting.
+else
+    wget -q "http://meyerweb.com/eric/tools/css/reset/$RESET"
+    echo Wrote $RESET
+fi
+
+if [ -e $JQUERY ]
+then 
+    echo $JQUERY exists, not overwriting.
+else
+    wget -q "http://code.jquery.com/$JQUERY"
+    echo Wrote $JQUERY
+fi
