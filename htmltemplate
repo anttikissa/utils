@@ -10,7 +10,7 @@
 # and fetch the following files from their original sources using wget:
 #
 # reset.css
-# jquery-1.4.2.min.js 
+# jquery-1.5.2.min.js 
 #
 # Files are not overwritten if they exist.
 #
@@ -19,7 +19,7 @@ INDEX=index.html
 STYLE=style.less
 SCRIPT=script.js
 RESET=reset.css
-JQUERY=jquery-1.4.2.min.js
+JQUERY=jquery-1.5.2.min.js
 
 if [ -e $INDEX ]
 then 
@@ -32,7 +32,7 @@ else
 <head>
 <title>I am a title.</title>
 <link rel="stylesheet" href="style.css">
-<script src="jquery-1.4.2.min.js"></script>
+<script src="jquery-1.5.2.min.js"></script>
 <script src="script.js"></script>
 </head>
 <body>
